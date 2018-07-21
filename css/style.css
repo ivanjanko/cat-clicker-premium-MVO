@@ -6,7 +6,7 @@ img {
     width: 640px;
 }
 
-content {
+content, #admin_view{
     display: none;
 }
 

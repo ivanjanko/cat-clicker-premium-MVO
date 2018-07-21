@@ -43,11 +43,23 @@ var octopus = {
     setCurrentCat: function(cat) {
         model.currentCat = cat;
     },
-
+    displayAdminView: function() {
+        adminView.render();
+    },
+    hideAdminView: function() {
+        adminView.adminViewCont.style.display = "none";
+    },
+    updateCurrentCat: function() {
+        model.currentCat.name = adminView.nameInput.value;
+        model.currentCat.image = adminView.urlInput.value;
+        model.currentCat.clicks = adminView.clicksInput.value;
+        catView.render();
+    },
     init: function() {
         model.init();
         catList.init();
         catView.init();
+        adminView.init();
     }
 };
 
@@ -99,6 +111,36 @@ var catView = {
 
         // make content visible
         this.catElement.style.display = "block";
+    }
+};
+var adminView = {
+    init: function() {
+        // grab elements
+        this.adminButton = document.getElementById('adminButt');
+        this.adminViewCont = document.getElementById('admin_view');
+        this.adCancelButt = document.getElementById('cancel');
+        this.adSaveButt = document.getElementById('save');
+        // grab input filed
+        this.nameInput = document.getElementById('admin_name');
+        this.urlInput = document.getElementById('admin_image');
+        this.clicksInput = document.getElementById('admin_clicks');
+        
+        // set event listener on admin button
+        this.adminButton.addEventListener('click', function() {
+            octopus.displayAdminView();
+        });
+        // set event listener on cancel button
+        this.adCancelButt.addEventListener('click', function() {
+            octopus.hideAdminView();
+        });
+        // set event listener on save button
+        this.adSaveButt.addEventListener('click', function() {
+            octopus.updateCurrentCat();
+        });
+    },
+    render: function(){
+        /// make content visible
+        this.adminViewCont.style.display = "block";
     }
 };
 
