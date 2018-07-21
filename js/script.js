@@ -80,15 +80,23 @@ var catView = {
         this.imageElement = document.getElementById('image');
         this.clicksElement = document.querySelector('.clicks');
         this.catElement = document.querySelector('content');
-        // catView.render();
+        
+        // set event listener on image element
+        this.imageElement.addEventListener('click', function() {
+            catView.currentCat.clicks++;
+            // update click text
+            catView.clicksElement.innerHTML = `${catView.currentCat.clicks} cat click`;
+        });
     },
     render: function(){
         // get current cat
-        var currentCat = octopus.getCurrentCat();
+        this.currentCat = octopus.getCurrentCat();
+        // console.log(currentCat);
         // insert values in to the elements
-        this.nameElement.innerText = currentCat.name;
-        this.imageElement.src = currentCat.image;
-        this.clicksElement.innerHTML = `${currentCat.clicks} cat clicks`;
+        this.nameElement.innerText = this.currentCat.name;
+        this.imageElement.src = this.currentCat.image;
+        this.clicksElement.innerHTML = `${this.currentCat.clicks} cat clicks`;
+
         // make content visible
         this.catElement.style.display = "block";
     }
