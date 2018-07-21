@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+}
+
+img {
+    width: 640px;
+}
+
+content {
+    display: none;
+}
+
+p {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
